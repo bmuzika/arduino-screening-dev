@@ -1,0 +1,23 @@
+const int LED_pin = 6;
+
+volatile int buttonPress = LOW;
+volatile int brightness = 255;
+void setup() {
+  // put your setup code here, to run once:
+  pinMode(LED_pin, OUTPUT);
+  //pinMode(buttonPin, INPUT);
+  attachInterrupt(0, buttonPressed, RISING);
+}
+
+void loop() {
+  // put your main code here, to run repeatedly:
+  if (buttonPress == HIGH){
+    brightness = brightness - 10;
+  }
+  analogWrite(LED_pin, brightness);
+  buttonPress = LOW;
+}
+
+void buttonPressed() {
+  buttonPress = HIGH;
+}
